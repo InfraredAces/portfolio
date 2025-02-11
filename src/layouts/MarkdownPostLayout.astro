@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+const baseURL = import.meta.env.BASE_URL
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout pageTitle={frontmatter.title} />
@@ -7,7 +8,7 @@ const { frontmatter } = Astro.props;
     <p> Tags: 
         {frontmatter.tags.sort().map((tag: string, i) => (<span>
             {i > 0 && ","}
-            <a href={`/tags/${tag}`}>{tag}</a>    
+            <a href={`${baseURL}/tags/${tag}`}>{tag}</a>    
         </span>))}
     </p>
     <slot />
