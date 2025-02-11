@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BlogPost from '../../components/BlogPost.astro';
+const allPosts = await getCollection("blog");
+const pageTitle = "Blog"
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h2>This is where I blog and put out notifications regarding my projects.</h2>
+  <ul>
+    {allPosts.map((post: any) => <BlogPost pubDate={post.data.pubDate.toLocaleDateString()} url={`/blog/${post.id}/`} title={post.data.title} />)}
+  </ul>
+</BaseLayout>
